@@ -54,6 +54,7 @@ body::before {
 
 /* ---- LOGO ---- */
 .logo-wrap {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,30 +64,27 @@ body::before {
   width: 200px;
   max-width: 62vw;
   display: block;
+  margin: 0 auto;
 }
 
-/* ---- LANG SWITCHER ---- */
+/* ---- LANG SWITCHER — plain text with gold hairline ---- */
 .lang {
   display: flex;
   align-items: center;
-  gap: 0;
-  border: 1px solid var(--gold-border);
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.04);
+  gap: 20px;
 }
 .lang button {
   background: none; border: none; cursor: pointer;
-  font-family: var(--font); font-size: 12px; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase;
+  font-family: var(--font); font-size: 13px; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--muted);
-  padding: 8px 18px;
-  transition: background .15s, color .15s;
+  padding: 0 0 4px;
+  border-bottom: 1px solid transparent;
+  transition: color .15s, border-color .15s;
 }
 .lang button.active {
-  background: var(--gold);
-  color: #1d1813;
-  font-weight: 600;
+  color: var(--gold);
+  border-bottom-color: var(--gold);
 }
 
 /* ---- MENU BUTTON ---- */
