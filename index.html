@@ -3,275 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mars Espresso — Kadıköy</title>
-<meta name="description" content="Mars Espresso Kadıköy — Menü, sadakat kartı ve daha fazlası.">
+<title>Mars Cafe — Kadıköy</title>
+<meta name="description" content="Mars Cafe Kadıköy — Menü, sadakat kartı ve daha fazlası.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --paper:   #F5EFE4;
-  --surface: #FDFAF5;
-  --ink:     #1A1714;
-  --muted:   #7A6E63;
-  --line:    #E2D9CC;
-  --gold:    #B8843A;
-  --gold-soft: #EDE6D9;
-  --display: "Cormorant Garamond", Georgia, serif;
-  --body:    "Inter", system-ui, sans-serif;
-}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold:       #D4B57E;
+  --gold-light: #ECD5A4;
+  --gold-dim:   rgba(212,181,126,0.15);
+  --gold-border:rgba(212,181,126,0.22);
+  --bg:         #111111;
+  --card:       #1d1813;
+  --muted:      rgba(255,255,255,0.38);
+  --font: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+}
+
 html, body {
-  height: 100%;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--body);
+  min-height: 100dvh;
+  background: var(--bg);
+  color: #fff;
+  font-family: var(--font);
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---- layout ---- */
+/* subtle radial glow at top, same as card */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse at 50% -10%, rgba(212,181,126,0.10) 0%, transparent 55%);
+  pointer-events: none;
+}
+
 .page {
+  position: relative; z-index: 1;
   min-height: 100dvh;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 52px 24px 44px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 48px 32px 40px;
-  max-width: 420px;
-  margin: 0 auto;
+  gap: 36px;
 }
 
-/* ---- top: lang switcher ---- */
+/* ---- LOGO ---- */
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.logo-wrap img {
+  width: 200px;
+  max-width: 62vw;
+  display: block;
+}
+
+/* ---- LANG SWITCHER ---- */
 .lang {
   display: flex;
-  gap: 20px;
   align-items: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
-  align-self: flex-end;
+  gap: 0;
+  border: 1px solid var(--gold-border);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
 }
 .lang button {
   background: none; border: none; cursor: pointer;
-  font: inherit; color: inherit; padding: 4px 0;
-  border-bottom: 1.5px solid transparent;
+  font-family: var(--font); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 18px;
+  transition: background .15s, color .15s;
 }
 .lang button.active {
-  color: var(--ink);
-  border-bottom-color: var(--gold);
-}
-.lang-sep { color: var(--line); }
-
-/* ---- center: logo + tagline ---- */
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  text-align: center;
-}
-.logo-wrap img {
-  height: 52px;
-  width: auto;
-  display: block;
-}
-/* fallback if image doesn't load */
-.logo-fallback {
-  font-family: var(--display);
+  background: var(--gold);
+  color: #1d1813;
   font-weight: 600;
-  font-size: 42px;
-  letter-spacing: 2px;
-  color: var(--ink);
-  line-height: 1;
-  display: none;
-}
-.logo-wrap img.errored + .logo-fallback { display: block; }
-
-.tagline {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 17px;
-  color: var(--muted);
-  letter-spacing: .3px;
 }
 
-/* ---- menu button ---- */
+/* ---- MENU BUTTON ---- */
 .btn-menu {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 100%;
-  padding: 17px 24px;
-  background: var(--ink);
-  color: #F5EFE4;
+  padding: 16px 24px;
+  background: var(--gold);
+  color: #1d1813;
   border-radius: 14px;
   text-decoration: none;
-  font-family: var(--display);
+  font-family: var(--font);
+  font-size: 16px;
   font-weight: 600;
-  font-size: 22px;
-  letter-spacing: .3px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   transition: opacity .15s;
 }
 .btn-menu:hover { opacity: .88; }
-.btn-menu:active { opacity: .75; }
-.btn-menu svg { width: 18px; height: 18px; color: var(--gold); flex: 0 0 auto; }
+.btn-menu:active { opacity: .72; }
+.btn-menu svg { width: 17px; height: 17px; flex: 0 0 auto; }
 
-/* ---- secondary actions ---- */
+/* ---- ACTION LIST ---- */
 .actions {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  border: 1px solid var(--gold-border);
+  border-radius: 16px;
   overflow: hidden;
+  background: var(--card);
 }
 .action-row {
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 15px 18px;
-  background: var(--surface);
   text-decoration: none;
-  color: var(--ink);
-  font-size: 15px;
-  font-weight: 500;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   transition: background .12s;
 }
-.action-row:hover { background: var(--gold-soft); }
-.action-row .icon {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--gold-soft);
+.action-row:last-child { border-bottom: none; }
+.action-row:hover { background: rgba(212,181,126,0.07); }
+
+.action-icon {
+  width: 34px; height: 34px; border-radius: 9px;
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-border);
   display: flex; align-items: center; justify-content: center;
   flex: 0 0 auto;
 }
-.action-row .icon svg { width: 18px; height: 18px; color: var(--gold); }
-.action-row .chevron { margin-left: auto; color: var(--muted); }
-.action-row .chevron svg { width: 16px; height: 16px; }
+.action-icon svg { width: 16px; height: 16px; color: var(--gold); }
 
-/* ---- footer ---- */
+.action-label { flex: 1; }
+.action-chevron { color: var(--muted); }
+.action-chevron svg { width: 15px; height: 15px; display: block; }
+
+/* ---- FOOTER ---- */
 footer {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
   text-align: center;
-  line-height: 1.6;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
 }
-footer a { color: inherit; text-decoration: none; }
-
-@media (min-height: 700px) {
-  .page { padding-top: 64px; padding-bottom: 52px; }
-}
+footer a { color: var(--gold); text-decoration: none; opacity: .8; }
 </style>
 </head>
 <body>
-
 <div class="page">
 
-  <!-- Language switcher -->
-  <div class="lang">
-    <button class="active" onclick="setLang('tr')" id="btn-tr">Türkçe</button>
-    <span class="lang-sep">|</span>
-    <button onclick="setLang('en')" id="btn-en">English</button>
-  </div>
+  <!-- LOGO -->
+  <div class="logo-wrap">
+    <!-- Файл mars_transparent.png должен лежать рядом с index.html в репо -->
+    <img src="mars_transparent.png" alt="Mars Cafe">
 
-  <!-- Logo + tagline -->
-  <div class="hero">
-    <div class="logo-wrap">
-      <img
-        src="https://marsespresso.com/wp-content/uploads/2021/11/logo-dark.png"
-        alt="Mars Espresso"
-        id="logo-img"
-        onerror="this.classList.add('errored')">
-      <div class="logo-fallback">MARS</div>
+    <!-- LANG под логотипом -->
+    <div class="lang" role="group" aria-label="Language">
+      <button class="active" onclick="setLang('tr')" id="btn-tr">TR</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
     </div>
-    <p class="tagline" id="tagline">Kadıköy'ün nitelikli kahvesi</p>
   </div>
 
-  <!-- Main CTA -->
+  <!-- MENU CTA -->
   <a class="btn-menu" href="https://menu.marsespresso.com" id="btn-menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
       <rect x="9" y="3" width="6" height="4" rx="1"/>
       <path d="M9 12h6M9 16h4"/>
     </svg>
-    <span id="menu-label">Menüyü Gör</span>
+    <span id="label-menu">Menüyü Gör</span>
   </a>
 
-  <!-- Secondary actions -->
+  <!-- SECONDARY ACTIONS -->
   <div class="actions">
 
-    <a class="action-row" href="https://www.instagram.com/marsespresso" target="_blank" rel="noopener" id="row-ig">
-      <div class="icon">
-        <!-- Instagram icon -->
+    <a class="action-row" href="https://www.instagram.com/marsespresso" target="_blank" rel="noopener">
+      <div class="action-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <rect x="2" y="2" width="20" height="20" rx="5"/>
           <circle cx="12" cy="12" r="5"/>
           <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/>
         </svg>
       </div>
-      <span id="ig-label">Instagram</span>
-      <div class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+      <span class="action-label" id="label-ig">Instagram</span>
+      <div class="action-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
     </a>
 
-    <a class="action-row" href="https://card.marsespresso.com" target="_blank" rel="noopener" id="row-loyalty">
-      <div class="icon">
+    <a class="action-row" href="https://card.marsespresso.com" target="_blank" rel="noopener">
+      <div class="action-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <rect x="2" y="5" width="20" height="14" rx="2"/>
-          <path d="M2 10h20"/>
-          <path d="M6 15h4"/>
+          <path d="M2 10h20M6 15h4"/>
         </svg>
       </div>
-      <span id="loyalty-label">Sadakat kartı</span>
-      <div class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+      <span class="action-label" id="label-loyalty">Sadakat kartı</span>
+      <div class="action-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
     </a>
 
-    <a class="action-row" href="https://g.page/r/CbFormK82YJZEAE/review" target="_blank" rel="noopener" id="row-review">
-      <div class="icon">
+    <a class="action-row" href="https://g.page/r/CbFormK82YJZEAE/review" target="_blank" rel="noopener">
+      <div class="action-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <path d="M12 3l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8L6.3 19.6l1-6L3 9.4l6-.9z"/>
         </svg>
       </div>
-      <span id="review-label">Google'da değerlendirin</span>
-      <div class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+      <span class="action-label" id="label-review">Google'da değerlendirin</span>
+      <div class="action-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
     </a>
 
   </div>
 
   <footer>
-    Mars Espresso · Kadıköy, İstanbul<br>
-    <a href="https://www.instagram.com/marsespresso">@marsespresso</a>
+    Kadıköy, İstanbul<br>
+    <a href="https://www.instagram.com/marsespresso" target="_blank" rel="noopener">@marsespresso</a>
   </footer>
 
 </div>
 
 <script>
-const STRINGS = {
-  tagline:  { tr: "Kadıköy'ün nitelikli kahvesi", en: "Specialty coffee in Kadıköy" },
-  menu:     { tr: "Menüyü Gör",                   en: "View Menu" },
-  ig:       { tr: "Instagram",                    en: "Instagram" },
-  loyalty:  { tr: "Sadakat kartı",                en: "Loyalty card" },
-  review:   { tr: "Google'da değerlendirin",      en: "Review us on Google" },
+const S = {
+  menu:    { tr: "Menüyü Gör",              en: "View Menu" },
+  ig:      { tr: "Instagram",               en: "Instagram" },
+  loyalty: { tr: "Sadakat kartı",           en: "Loyalty card" },
+  review:  { tr: "Google'da değerlendirin", en: "Review us on Google" },
 };
-
 let lang = "tr";
 
 function setLang(l) {
   lang = l;
   document.documentElement.lang = l;
-  document.getElementById("btn-tr").classList.toggle("active", l==="tr");
-  document.getElementById("btn-en").classList.toggle("active", l==="en");
-  document.getElementById("tagline").textContent      = STRINGS.tagline[l];
-  document.getElementById("menu-label").textContent   = STRINGS.menu[l];
-  document.getElementById("ig-label").textContent     = STRINGS.ig[l];
-  document.getElementById("loyalty-label").textContent = STRINGS.loyalty[l];
-  document.getElementById("review-label").textContent = STRINGS.review[l];
+  document.getElementById("btn-tr").classList.toggle("active", l === "tr");
+  document.getElementById("btn-en").classList.toggle("active", l === "en");
+  document.getElementById("label-menu").textContent    = S.menu[l];
+  document.getElementById("label-ig").textContent      = S.ig[l];
+  document.getElementById("label-loyalty").textContent = S.loyalty[l];
+  document.getElementById("label-review").textContent  = S.review[l];
 }
 
-// detect browser language on first load
 if (navigator.language && navigator.language.startsWith("en")) setLang("en");
 </script>
 </body>
