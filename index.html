@@ -71,7 +71,13 @@ body::before {
 .lang {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
+}
+.lang-sep {
+  color: rgba(212,181,126,0.35);
+  font-size: 13px;
+  font-weight: 300;
+  user-select: none;
 }
 .lang button {
   background: none; border: none; cursor: pointer;
@@ -170,6 +176,7 @@ footer a { color: var(--gold); text-decoration: none; opacity: .8; }
     <!-- LANG под логотипом -->
     <div class="lang" role="group" aria-label="Language">
       <button class="active" onclick="setLang('tr')" id="btn-tr">TR</button>
+      <span class="lang-sep">/</span>
       <button onclick="setLang('en')" id="btn-en">EN</button>
     </div>
   </div>
