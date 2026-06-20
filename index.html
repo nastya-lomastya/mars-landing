@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mars Cafe — Kadıköy</title>
-<meta name="description" content="Mars Cafe Kadıköy — Menü, sadakat kartı ve daha fazlası.">
+<meta name="description" content="Mars Cafe Kadıköy — Menü, ödül kartı ve daha fazlası.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -182,7 +182,7 @@ footer a { color: var(--gold); text-decoration: none; opacity: .8; }
   </div>
 
   <!-- MENU CTA -->
-  <a class="btn-menu" href="https://menu.marsespresso.com" id="btn-menu">
+  <a class="btn-menu" href="https://menu.marsespresso.com?lang=tr" id="btn-menu-link" id="btn-menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
       <rect x="9" y="3" width="6" height="4" rx="1"/>
@@ -213,7 +213,7 @@ footer a { color: var(--gold); text-decoration: none; opacity: .8; }
           <path d="M2 10h20M6 15h4"/>
         </svg>
       </div>
-      <span class="action-label" id="label-loyalty">Sadakat kartı</span>
+      <span class="action-label" id="label-loyalty">Ödül kartı</span>
       <div class="action-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
     </a>
 
@@ -240,7 +240,7 @@ footer a { color: var(--gold); text-decoration: none; opacity: .8; }
 const S = {
   menu:    { tr: "Menüyü Gör",              en: "View Menu" },
   ig:      { tr: "Instagram",               en: "Instagram" },
-  loyalty: { tr: "Ödül kartı",              en: "Rewards card" },
+  loyalty: { tr: "Ücretsiz kahve — Ödül kartı", en: "Free coffee — Rewards card" },
   review:  { tr: "Google'da değerlendirin", en: "Review us on Google" },
 };
 let lang = "tr";
@@ -251,6 +251,7 @@ function setLang(l) {
   document.getElementById("btn-tr").classList.toggle("active", l === "tr");
   document.getElementById("btn-en").classList.toggle("active", l === "en");
   document.getElementById("label-menu").textContent    = S.menu[l];
+  document.getElementById("btn-menu-link").href = 'https://menu.marsespresso.com?lang=' + l;
   document.getElementById("label-ig").textContent      = S.ig[l];
   document.getElementById("label-loyalty").textContent = S.loyalty[l];
   document.getElementById("label-review").textContent  = S.review[l];
