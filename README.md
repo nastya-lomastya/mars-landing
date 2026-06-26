@@ -2,7 +2,7 @@
 
 A simple single-page landing (plain HTML/CSS/JS, no build step) for Mars Cafe in Kadıköy. Opened via a QR code on tables: links to the menu, loyalty card, Instagram, and Google review.
 
-![Screenshot](landing.PNG)
+<img src="landing.PNG" width="300" alt="Screenshot">
 
 ## Features
 
